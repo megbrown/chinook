@@ -53,14 +53,39 @@
 -- 8. How many Invoices were there in 2009 and 2011? What are the respective
 -- total sales for each of those years?
 
+-- SELECT COUNT(*) AS InvoiceTotal
+-- FROM Invoice
+-- WHERE InvoiceDate LIKE ('2009%')
+-- OR InvoiceDate LIKE ('2011%')
+
+-- SELECT SUM(Total) AS Total2009
+-- FROM Invoice
+-- WHERE InvoiceDate LIKE ('2009%')
+
+-- SELECT SUM(Total) AS Total2011
+-- FROM Invoice
+-- WHERE InvoiceDate LIKE ('2011%')
+
 -- 9. Looking at the InvoiceLine table, provide a query that COUNTs the number
 -- of line items for Invoice ID 37.
+
+-- SELECT COUNT(InvoiceId) AS TOTAL37
+-- FROM InvoiceLine
+-- WHERE InvoiceId IS 37
 
 -- 10. Looking at the InvoiceLine table, provide a query that COUNTs the number
 -- of line items for each Invoice. HINT:
 -- [GROUP BY](http://www.sqlite.org/lang_select.html#resultset)
 
+-- SELECT InvoiceId, COUNT(InvoiceId) AS Total
+-- FROM InvoiceLine
+-- GROUP BY InvoiceID
+
 -- 11. Provide a query that includes the track name with each invoice line item.
+
+-- SELECT i.*, t.name
+-- FROM Invoice i, Track t, InvoiceLine l
+-- WHERE l.InvoiceId IS i.InvoiceId
 
 -- 12. Provide a query that includes the purchased track name AND artist name
 -- with each invoice line item.
