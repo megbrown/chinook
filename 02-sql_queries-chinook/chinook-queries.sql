@@ -83,15 +83,25 @@
 
 -- 11. Provide a query that includes the track name with each invoice line item.
 
--- SELECT i.*, t.name
--- FROM Invoice i, Track t, InvoiceLine l
--- WHERE l.InvoiceId IS i.InvoiceId
+-- SELECT l.*, t.name
+-- FROM Track t, InvoiceLine l
+-- WHERE t.TrackId IS l.TrackId
 
 -- 12. Provide a query that includes the purchased track name AND artist name
 -- with each invoice line item.
 
+-- SELECT l.*, t.name AS TrackName, r.Name AS ArtistName
+-- FROM Track t, InvoiceLine l, Album a, Artist r
+-- WHERE t.TrackId IS l.TrackId
+-- AND t.AlbumId IS a.AlbumId
+-- AND a.ArtistId IS r.ArtistId
+
 -- 13. Provide a query that shows the # of invoices per country.
 -- HINT: [GROUP BY](http://www.sqlite.org/lang_select.html#resultset)
+
+-- SELECT BillingCountry, COUNT(*) AS TotalInvoice
+-- FROM Invoice
+-- GROUP BY BillingCountry
 
 -- 14. Provide a query that shows the total number of tracks in each playlist.
 -- The Playlist name should be included on the resultant table.
