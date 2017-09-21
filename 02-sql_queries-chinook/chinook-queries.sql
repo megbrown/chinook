@@ -130,11 +130,43 @@
 
 -- 17. Provide a query that shows total sales made by each sales agent.
 
+-- SELECT e.EmployeeId AS SalesAgentId, round(SUM(i.Total), 2) AS TotalSales
+-- FROM Employee e, Invoice i, Customer c
+-- WHERE e.EmployeeId IS c.SupportRepId
+-- AND c.CustomerId IS i.CustomerId
+-- GROUP BY e.EmployeeId
+
 -- 18. Which sales agent made the most in sales in 2009?
+
+-- SELECT SalesAgentId, MAX(TotalSales)
+-- FROM
+-- (SELECT e.EmployeeId AS SalesAgentId, round(SUM(i.Total), 2) AS TotalSales
+-- FROM Employee e, Invoice i, Customer c
+-- WHERE e.EmployeeId IS c.SupportRepId
+-- AND c.CustomerId IS i.CustomerId
+-- AND i.InvoiceDate LIKE ('2009%')
+-- GROUP BY e.EmployeeId)
 
 -- 19. Which sales agent made the most in sales in 2010?
 
+-- SELECT SalesAgentId, MAX(TotalSales)
+-- FROM
+-- (SELECT e.EmployeeId AS SalesAgentId, round(SUM(i.Total), 2) AS TotalSales
+-- FROM Employee e, Invoice i, Customer c
+-- WHERE e.EmployeeId IS c.SupportRepId
+-- AND c.CustomerId IS i.CustomerId
+-- AND i.InvoiceDate LIKE ('2010%')
+-- GROUP BY e.EmployeeId)
+
 -- 20. Which sales agent made the most in sales over all?
+
+-- SELECT SalesAgentId, MAX(TotalSales)
+-- FROM
+-- (SELECT e.EmployeeId AS SalesAgentId, round(SUM(i.Total), 2) AS TotalSales
+-- FROM Employee e, Invoice i, Customer c
+-- WHERE e.EmployeeId IS c.SupportRepId
+-- AND c.CustomerId IS i.CustomerId
+-- GROUP BY e.EmployeeId)
 
 -- 21. Provide a query that shows the # of customers assigned to each sales
 -- agent.
@@ -152,5 +184,7 @@
 
 -- 27. Provide a query that shows the number tracks purchased in all invoices
 -- that contain more than one genre.
+
+Count, count distinct, Having by
 
 
