@@ -106,11 +106,27 @@
 -- 14. Provide a query that shows the total number of tracks in each playlist.
 -- The Playlist name should be included on the resultant table.
 
+-- SELECT p.name, COUNT(l.PlaylistId) AS TotalTracks
+-- FROM Playlist p, PlaylistTrack l
+-- WHERE p.PlaylistId IS l.PlaylistId
+-- GROUP BY p.PlaylistId
+
 -- 15. Provide a query that shows all the Tracks, but displays no IDs. The
 -- resultant table should include the Album name, Media type and Genre.
 
+-- SELECT a.Title AS AlbumName, g.Name AS Genre,  m.Name As MediaType
+-- FROM Album a, Genre g, MediaType m, Track t
+-- WHERE a.AlbumId IS t.AlbumId
+-- AND g.GenreId IS t.GenreId
+-- AND m.MediaTypeId IS t.MediaTypeId
+
 -- 16. Provide a query that shows all Invoices but includes the # of invoice
 -- line items.
+
+-- SELECT i.*, COUNT(l.InvoiceId) AS TotalInvoice
+-- FROM Invoice i, InvoiceLine l
+-- Where i.invoiceId IS l.invoiceId
+-- GROUP BY l.InvoiceId
 
 -- 17. Provide a query that shows total sales made by each sales agent.
 
