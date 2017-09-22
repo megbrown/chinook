@@ -171,20 +171,58 @@
 -- 21. Provide a query that shows the # of customers assigned to each sales
 -- agent.
 
+-- SELECT COUNT(CustomerId) AS NumberCust, SupportRepId AS SalesAgent
+-- FROM Customer
+-- GROUP BY SalesAgent
+
 -- 22. Provide a query that shows the total sales per country. Which country's
 -- customers spent the most?
 
+-- SELECT BillingCountry, SUM(Total) AS TotalSales
+-- FROM Invoice
+-- GROUP BY BillingCountry
+
+-- SELECT BillingCountry, MAX(TotalSales) AS TotalSales
+-- FROM
+-- (SELECT BillingCountry, SUM(Total) AS TotalSales
+-- FROM Invoice
+-- GROUP BY BillingCountry)
+
 -- 23. Provide a query that shows the most purchased track of 2013.
+
+-- SELECT t.Name, COUNT(l.TrackId) AS TrackTotal, i.InvoiceDate
+-- FROM Track t, InvoiceLine l, Invoice i
+-- WHERE t.TrackId IS l.TrackId
+-- AND l.InvoiceId IS i.InvoiceId
+-- AND i.InvoiceDate LIKE ('2013%')
+-- GROUP BY l.TrackId
+-- ORDER BY TrackTotal DESC
 
 -- 24. Provide a query that shows the top 5 most purchased tracks over all.
 
+-- SELECT t.Name, COUNT(l.TrackId) AS TrackTotal
+-- FROM Track t, InvoiceLine l
+-- WHERE t.TrackId IS l.TrackId
+-- GROUP BY l.TrackId
+-- ORDER BY TrackTotal DESC
+-- LIMIT 5
+
 -- 25. Provide a query that shows the top 3 best selling artists.
+
+-- SELECT a.Name, SUM(i.Total) AS TotalSales
+-- FROM Artist a, Album b, Track t, InvoiceLine l, Invoice i
+-- WHERE a.ArtistId IS b.ArtistId
+-- AND b.AlbumId IS t.AlbumId
+-- AND t.TrackId IS l.TrackId
+-- AND l.InvoiceId IS i.InvoiceId
+-- GROUP BY i.Total
+-- ORDER BY i.Total DESC
+-- LIMIT 3
 
 -- 26. Provide a query that shows the most purchased Media Type.
 
 -- 27. Provide a query that shows the number tracks purchased in all invoices
 -- that contain more than one genre.
 
-Count, count distinct, Having by
 
 
